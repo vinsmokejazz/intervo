@@ -22,6 +22,10 @@
   --color-dark-200: #27282f;
   --color-dark-300: #242633;
 
+  --matrix-green: #03A062;
+  --matrix-green-light: #04c075;
+  --matrix-green-dark: #028a52;
+
   --font-mona-sans: "Mona Sans", sans-serif;
 
   --bg-pattern: url("/pattern.png");
@@ -140,6 +144,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-jetbrains-mono), 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
   }
   p {
     @apply text-light-100;

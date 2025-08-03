@@ -97,3 +97,10 @@ interface InterviewFormProps {
 interface TechIconProps {
   techStack: string[];
 }
+
+interface Message {
+  type: string;
+  transcriptType?: string;
+  role: "user" | "system" | "assistant";
+  transcript: string;
+}
