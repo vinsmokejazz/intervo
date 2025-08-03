@@ -3,14 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import React from "react";
-import { uuid, z } from "zod";
+import { z } from "zod";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import Link from "next/link";
 import { toast } from "sonner";
-import FormField from "./FormField";
+
 import { useRouter } from "next/navigation";
 import {
   createUserWithEmailAndPassword,
@@ -18,6 +18,7 @@ import {
 } from "firebase/auth";
 import { auth } from "@/firebase/client";
 import { signIn, signUp } from "@/lib/actions/auth.action";
+import FormField from "./FormField";
 
 const authFormSchema = (type: FormType) => {
   return z.object({
