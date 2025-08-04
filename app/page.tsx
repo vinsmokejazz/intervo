@@ -1,7 +1,17 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { getCurrentUser } from "@/lib/actions/auth.action";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  // Check if user is authenticated
+  const user = await getCurrentUser();
+  
+  // If user is signed in, redirect to dashboard
+  if (user) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white font-mono">
       {/* Background Pattern */}
