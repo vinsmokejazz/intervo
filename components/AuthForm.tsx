@@ -93,43 +93,51 @@ const AuthForm = ({ type }: { type: FormType }) => {
   }
 
   const isSignIn = type === "sign-in";
-  
+
   return (
     <div className="w-full min-h-screen  text-white font-mono flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12 relative">
       {/* Background Pattern */}
-      
+
       <div className="relative min-h-screen z-10 w-full max-w-sm sm:max-w-md">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
           <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-4 sm:mb-6">
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-green-500 to-lime-400 rounded-xl flex items-center justify-center shadow-lg">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div className="flex flex-col items-start">
               <h1 className="text-2xl sm:text-3xl font-bold text-lime-400 leading-tight">
                 InterVo
               </h1>
-              <p className="text-gray-400 text-xs sm:text-sm">AI-Powered Interviews</p>
+              <p className="text-gray-400 text-xs sm:text-sm">
+                AI-Powered Interviews
+              </p>
             </div>
           </div>
-          
+
           <h2 className="text-xl sm:text-2xl font-bold text-lime-400 mb-2">
             {isSignIn ? "Welcome Back, Legend!" : "Create Account"}
           </h2>
           <p className="text-gray-400 whitespace-nowrap text-sm sm:text-base">
-            {isSignIn 
-              ? "Sign in to continue leveling up your interview game" 
-              : "Join the squad and let AI roast you into greatness"
-            }
+            {isSignIn
+              ? "Sign in to continue leveling up your interview game"
+              : "Join the squad and let AI roast you into greatness"}
           </p>
         </div>
 
         {/* Form Card */}
         <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 sm:p-8 shadow-2xl">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-4 sm:space-y-6"
+            >
               {!isSignIn && (
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-lime-400">
@@ -182,8 +190,8 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 )}
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-lime-400 hover:bg-lime-500 text-black font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 focus:ring-offset-zinc-900 text-sm sm:text-base"
                 disabled={form.formState.isSubmitting}
               >
@@ -194,7 +202,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
                       <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black rounded-full animate-bounce delay-100"></div>
                       <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black rounded-full animate-bounce delay-200"></div>
                     </div>
-                    <span className="text-xs sm:text-sm">{isSignIn ? "Signing in..." : "Creating account..."}</span>
+                    <span className="text-xs sm:text-sm">
+                      {isSignIn ? "Signing in..." : "Creating account..."}
+                    </span>
                   </div>
                 ) : (
                   <span>{isSignIn ? "Sign In" : "Create Account"}</span>
@@ -206,10 +216,12 @@ const AuthForm = ({ type }: { type: FormType }) => {
           {/* Footer */}
           <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-zinc-800 text-center">
             <p className="text-gray-400 text-sm sm:text-base">
-              {isSignIn ? "New here? Don’t just lurk " : "Already part of the cool club? "}
+              {isSignIn
+                ? "New here? Don’t just lurk "
+                : "Already part of the cool club? "}
               <Link
                 href={!isSignIn ? "/sign-in" : "/sign-up"}
-                className="text-lime-400 hover:text-lime-300 font-semibold transition-colors duration-200"
+                className="text-lime-400 hover:text-lime-300 font-semibold transition-colors duration-200 whitespace-nowrap"
               >
                 {!isSignIn ? "Sign in" : "Sign up"}
               </Link>
@@ -225,14 +237,30 @@ const AuthForm = ({ type }: { type: FormType }) => {
               <span>Secure & Private</span>
             </div>
             <div className="flex items-center space-x-2">
-              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
+              <svg
+                className="w-3 h-3 sm:w-4 sm:h-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clipRule="evenodd"
+                />
               </svg>
               <span>AI-Powered</span>
             </div>
             <div className="flex items-center space-x-2">
-              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+              <svg
+                className="w-3 h-3 sm:w-4 sm:h-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
               </svg>
               <span>Real-time Feedback</span>
             </div>

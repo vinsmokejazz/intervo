@@ -6,49 +6,51 @@ import { getCurrentUser } from "@/lib/actions/auth.action";
 const page = async () => {
   const user = await getCurrentUser();
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white font-mono">
+    <div className="min-h-screen bg-gradient-to-br from-lime-400/10 via-black to-lime-400/10 text-white font-mono">
       {/* Header */}
-      <div className="relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-        
-        {/* Header Content */}
-        <div className="relative z-10 px-6 py-8">
-          <div className="max-w-7xl mx-auto">
-            {/* Main Content */}
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-lime-400 to-lime-500 bg-clip-text text-transparent">
-                AI Interview Generation
-              </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Experience the future of interviewing with our advanced AI. 
-                Get real-time feedback, insights, and maybe even a virtual pat on the back.
-              </p>
-            </div>
+      <div className="relative z-10 px-4 sm:px-6 py-6 sm:py-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-lime-400 to-lime-500 bg-clip-text text-transparent">
+              Generate Your Interview
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+              Choose your preferred method to create a personalized interview experience.
+            </p>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 px-6 pb-8">
+      <div className="relative z-10 px-4 sm:px-6 pb-6 sm:pb-8">
         <div className="max-w-7xl mx-auto">
-        
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Interview Form */}
-            <div>
+            <div className="bg-gradient-to-br from-lime-400/10 via-black to-lime-400/20 rounded-2xl sm:rounded-3xl shadow-xl p-6 sm:p-8">
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-green-500 to-lime-400 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-lime-400 mb-2">Form-Based Generation</h2>
+                <p className="text-gray-400 text-sm sm:text-base">Fill out the form to create a custom interview tailored to your needs.</p>
+              </div>
               <InterviewForm userId={user?.id!} />
             </div>
 
-            {/* Agent Component */}
-            <div>
-              <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 shadow-2xl">
-                <Agent
-                  userName={user?.name!}
-                  userId={user?.id!}
-                  type="generate"
-                />
+            {/* AI Voice Agent */}
+            <div className="bg-gradient-to-br from-lime-400/10 via-black to-lime-400/20 rounded-2xl sm:rounded-3xl shadow-xl p-6 sm:p-8">
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-green-500 to-lime-400 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                  </svg>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-lime-400 mb-2">AI Voice Generation</h2>
+                <p className="text-gray-400 text-sm sm:text-base">Use your voice to generate an interview through conversation with our AI agent.</p>
               </div>
+              <Agent type="generate" userName={user?.name!} userId={user?.id!} />
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ const Feedback = async ({ params }: RouteParams) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white font-mono">
+    <div className="min-h-screen bg-gradient-to-br from-lime-400/10 via-black to-lime-400/10 text-white font-mono">
       <div className="max-w-4xl mx-auto px-6 py-8">
         {/* Header */}
         <div className="text-center mb-12">

@@ -149,7 +149,7 @@ const Agent = ({
               {isSpeaking && <span className="absolute inset-0 rounded-2xl bg-lime-400/20 animate-ping" />}
             </div>
           </div>
-          <h3 className="text-2xl font-bold text-white tracking-tight mb-1">AI Interviewer</h3>
+          <h3 className="text-2xl font-bold text-lime-400 tracking-tight mb-1">AI Interviewer</h3>
           <p className="text-gray-400 text-sm animate-fadeIn">{isSpeaking ? "Speaking..." : "Ready to interview"}</p>
         </div>
 
@@ -163,7 +163,7 @@ const Agent = ({
               </svg>
             </div>
           </div>
-          <h3 className="text-2xl font-bold text-white tracking-tight mb-1">{userName}</h3>
+          <h3 className="text-2xl font-bold text-lime-400 tracking-tight mb-1">{userName}</h3>
           <p className="text-gray-400 text-sm animate-fadeIn">
             {callStatus === "ACTIVE" ? "In Interview" : "Ready to start"}
           </p>
