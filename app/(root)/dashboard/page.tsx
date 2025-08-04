@@ -24,7 +24,7 @@ async function Home() {
   return (
     <>
       <section className="card-cta">
-        <div className="flex flex-col gap-6 max-w-lg">
+        <div className="flex flex-col gap-6 text-lime-400/90 max-w-lg">
           <h2>Get Interview-Ready (Without the Panic Sweats)</h2>
           <p className="text-lg">
             Practice real questions, get instant AI feedback — no judgment, just
@@ -50,7 +50,7 @@ async function Home() {
 
       <section className="py-12 px-4 md:px-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 min-h-[60vh] rounded-3xl shadow-xl mt-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-white mb-2">
+          <h2 className="text-3xl font-extrabold text-lime-400 mb-2">
             Your Interviews
           </h2>
           <p className="text-gray-300 mb-8">
@@ -81,7 +81,7 @@ async function Home() {
 
       <section className="py-12 px-4 md:px-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 min-h-[60vh] rounded-3xl shadow-xl mt-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-white mb-2">
+          <h2 className="text-3xl font-extrabold text-lime-400/90 mb-2">
             Take Interviews
           </h2>
           <p className="text-gray-300 mb-8">

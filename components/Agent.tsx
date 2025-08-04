@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -43,6 +42,8 @@ const Agent = ({
   const [messages, setMessages] = useState<SavedMessage[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [lastMessage, setLastMessage] = useState<string>("");
+  const [feedbackGenerated, setFeedbackGenerated] = useState(false);
+  const [isGeneratingFeedback, setIsGeneratingFeedback] = useState(false);
 
   useEffect(() => {
     const onCallStart = () => setCallStatus(CallStatus.ACTIVE);
@@ -77,30 +78,38 @@ const Agent = ({
     if (messages.length > 0) {
       setLastMessage(messages[messages.length - 1].content);
     }
+  }, [messages]);
 
-    const handleGenerateFeedback = async (messages: SavedMessage[]) => {
-      const { success, feedbackId: id } = await createFeedback({
-        interviewId: interviewId!,
-        userId: userId!,
-        transcript: messages,
+  const handleGenerateFeedback = async () => {
+    if (!interviewId || feedbackGenerated || isGeneratingFeedback) return;
+    
+    setIsGeneratingFeedback(true);
+    
+    try {
+      // Ensure we have at least one message for feedback generation
+      const transcriptToUse = messages.length > 0 ? messages : [{ role: "user", content: "Interview ended without responses." }];
+      
+      const { success, feedbackId: newFeedbackId } = await createFeedback({
+        interviewId: interviewId,
+        userId: userId,
+        transcript: transcriptToUse,
         feedbackId,
       });
 
-      if (success && id) {
+      if (success && newFeedbackId) {
+        setFeedbackGenerated(true);
         router.push(`/interview/${interviewId}/feedback`);
       } else {
-        router.push("/");
+        console.error("Failed to generate feedback");
+        alert("Failed to generate feedback. Please check your Google AI API key configuration.");
       }
-    };
-
-    if (callStatus === CallStatus.FINISHED) {
-      if (type === "generate") {
-        router.push("/");
-      } else {
-        handleGenerateFeedback(messages);
-      }
+    } catch (error) {
+      console.error("Error generating feedback:", error);
+      alert("Error generating feedback. Please try again or check your configuration.");
+    } finally {
+      setIsGeneratingFeedback(false);
     }
-  }, [messages, callStatus, feedbackId, interviewId, router, type, userId]);
+  };
 
   const handleCall = async () => {
     setCallStatus(CallStatus.CONNECTING);
@@ -130,7 +139,7 @@ const Agent = ({
       {/* Top Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
         {/* AI Interviewer */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-xl flex flex-col items-center text-center transition-all duration-200 hover:shadow-lime-400/20">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-xl flex flex-col items-center text-center transition-all duration-200 hover:border-lime-400/40">
           <div className="relative mb-4">
             <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-lime-400 rounded-2xl flex items-center justify-center shadow-md">
               {/* Custom AI Robot Icon */}
@@ -145,7 +154,7 @@ const Agent = ({
         </div>
 
         {/* User */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-xl flex flex-col items-center text-center transition-all duration-200 hover:shadow-lime-400/20">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-xl flex flex-col items-center text-center transition-all duration-200 hover:border-lime-400/40">
           <div className="relative mb-4">
             <div className="w-20 h-20 bg-zinc-700 rounded-2xl flex items-center justify-center">
               {/* Custom User Icon */}
@@ -228,6 +237,42 @@ const Agent = ({
           </button>
         )}
       </div>
+
+      {/* Feedback Button - Only show after interview ends */}
+      {callStatus === "FINISHED" && type === "interview" && interviewId && (
+        <div className="flex justify-center mb-6">
+          <button
+            onClick={handleGenerateFeedback}
+            disabled={feedbackGenerated || isGeneratingFeedback}
+            className="bg-lime-400 hover:bg-lime-500 text-black font-bold py-4 px-8 rounded-2xl transition-all duration-200 transform hover:scale-105 hover:shadow-xl flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isGeneratingFeedback ? (
+              <>
+                <div className="flex space-x-1">
+                  <div className="w-2 h-2 bg-black rounded-full animate-bounce"></div>
+                  <div className="w-2 h-2 bg-black rounded-full animate-bounce delay-100"></div>
+                  <div className="w-2 h-2 bg-black rounded-full animate-bounce delay-200"></div>
+                </div>
+                <span>Generating Feedback...</span>
+              </>
+            ) : feedbackGenerated ? (
+              <>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Feedback Generated</span>
+              </>
+            ) : (
+              <>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>View Feedback</span>
+              </>
+            )}
+          </button>
+        </div>
+      )}
 
       {/* Connection Status */}
       <div className="mt-4 flex justify-center">
