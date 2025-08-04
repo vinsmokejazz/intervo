@@ -1,8 +1,10 @@
 import Agent from '@/components/Agent'
+import InterviewForm from '@/components/InterviewForm'
 import React from 'react'
-import Image from 'next/image'
+import { getCurrentUser } from "@/lib/actions/auth.action";
 
-const page = () => {
+const page = async () => {
+  const user = await getCurrentUser();
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white font-mono">
       {/* Header */}
@@ -13,78 +15,41 @@ const page = () => {
         {/* Header Content */}
         <div className="relative z-10 px-6 py-8">
           <div className="max-w-7xl mx-auto">
-            {/* Logo and Title
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex items-center space-x-4">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                  </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-gray-900 animate-pulse"></div>
-                </div>
-                <div>
-                  <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    InterVo
-                  </h1>
-                  <p className="text-gray-400 text-sm">AI-Powered Interviews</p>
-                </div>
-              </div>
-            </div> */}
-
             {/* Main Content */}
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-lime-400 to-lime-500 bg-clip-text text-transparent">
                 AI Interview Generation
               </h2>
               <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Experience the future of interviewing with our advanced AI system. 
-                Get personalized feedback and insights in real-time.
+                Experience the future of interviewing with our advanced AI. 
+                Get real-time feedback, insights, and maybe even a virtual pat on the back.
               </p>
             </div>
-
-            {/* Stats Cards
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-all duration-300">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-500/20 rounded-lg mb-4">
-                  <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Real-time Analysis</h3>
-                <p className="text-gray-400 text-sm">Instant feedback and scoring during your interview</p>
-              </div>
-
-              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-all duration-300">
-                <div className="flex items-center justify-center w-12 h-12 bg-purple-500/20 rounded-lg mb-4">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Smart Insights</h3>
-                <p className="text-gray-400 text-sm">AI-powered analysis of your communication skills</p>
-              </div>
-
-              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-all duration-300">
-                <div className="flex items-center justify-center w-12 h-12 bg-green-500/20 rounded-lg mb-4">
-                  <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Performance Tracking</h3>
-                <p className="text-gray-400 text-sm">Track your progress across multiple interviews</p>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
 
-      {/* Agent Component */}
+      {/* Main Content */}
       <div className="relative z-10 px-6 pb-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 shadow-2xl">
-            <Agent userName="You" userId="user1" type="generate" />
+        <div className="max-w-7xl mx-auto">
+        
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Interview Form */}
+            <div>
+              <InterviewForm userId={user?.id!} />
+            </div>
+
+            {/* Agent Component */}
+            <div>
+              <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 shadow-2xl">
+                <Agent
+                  userName={user?.name!}
+                  userId={user?.id!}
+                  type="generate"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -35,8 +35,8 @@ export async function POST(request: Request) {
       level: level,
       techstack: techstack.split(","),
       questions: JSON.parse(questions),
-      userid: userid,
-      finalised: true,
+      userId: userid, // Convert userid from VAPI to userId for database
+      finalized: true,
       coverImage: getRandomInterviewCover(),
       createdAt: new Date().toISOString(),
     };
@@ -45,5 +45,6 @@ export async function POST(request: Request) {
     return Response.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error(error);
+    return Response.json({ success: false, error: "Failed to generate interview" }, { status: 500 });
   }
 }

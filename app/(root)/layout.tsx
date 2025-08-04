@@ -66,10 +66,10 @@ const Rootlayout = async ({children}:{children:ReactNode}) => {
               </div>
               
               {/* User Avatar */}
-              <div className="w-10 h-10 bg-gradient-to-r from-[#03A062] to-[#04c075] rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"/>
-                </svg>
+              <div className="w-10 h-10 bg-gradient-to-r from-slate-900 to-slate-800 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-10 text-lime-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+              </svg>
               </div>
             </div>
           </div>

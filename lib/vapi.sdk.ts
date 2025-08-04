@@ -10,9 +10,20 @@ if (!vapiToken) {
 let vapi: Vapi;
 
 try {
+  // Try different initialization approaches
+  console.log("Initializing VAPI with token:", vapiToken?.substring(0, 10) + "...");
+  
+  // Method 1: Standard initialization
   vapi = new Vapi(vapiToken!);
-  console.log("VAPI initialized successfully");
-  console.log("Token format check:", vapiToken?.substring(0, 10) + "...");
+  
+  // Test if the VAPI instance is properly configured
+  if (!vapi || typeof vapi.start !== 'function') {
+    throw new Error("VAPI instance is not properly initialized");
+  }
+  
+  console.log("VAPI initialized successfully with standard method");
+  console.log("VAPI methods available:", Object.getOwnPropertyNames(Object.getPrototypeOf(vapi)));
+  
 } catch (error) {
   console.error("Failed to initialize VAPI:", error);
   // Create a fallback instance that will throw errors when used

@@ -190,20 +190,17 @@ export const feedbackSchema = z.object({
 });
 
 export const interviewCovers = [
-  "/adobe.png",
-  "/amazon.png",
-  "/facebook.png",
-  "/hostinger.png",
-  "/pinterest.png",
-  "/quora.png",
-  "/reddit.png",
-  "/skype.png",
-  "/spotify.png",
-  "/telegram.png",
-  "/tiktok.png",
-  "/yahoo.png",
+  "https://logo.clearbit.com/microsoft.com",
+  "https://logo.clearbit.com/apple.com",
+  "https://logo.clearbit.com/google.com",
+  "https://logo.clearbit.com/netflix.com",
+  "https://logo.clearbit.com/amazon.com",
+  "https://logo.clearbit.com/nvidia.com",
+  "https://logo.clearbit.com/linkedin.com",
+  "https://logo.clearbit.com/meta.com",
+  "https://logo.clearbit.com/ibm.com",
+  "https://logo.clearbit.com/intel.com"
 ];
-
 export const dummyInterviews: Interview[] = [
   {
     id: "1",
