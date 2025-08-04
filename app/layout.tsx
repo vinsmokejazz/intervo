@@ -15,7 +15,12 @@ const JetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Intervo",
-  description: "AI Powered Mock Interviews",
+  description: "AI Powered Mock Interviews, Get grilled by a robot so real.",
+  icons: {
+    icon: "/favicon.svg",         
+    shortcut: "/favicon.png",     
+    apple: "/apple-touch-icon.png" 
+  },
 };
 
 export default function RootLayout({

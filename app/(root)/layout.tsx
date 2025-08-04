@@ -1,10 +1,11 @@
 import { isAuthenticated } from '@/lib/actions/auth.action'
 import { redirect } from 'next/navigation';
-import Image from 'next/image'
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
 import ScrollNavbar from '@/components/ScrollNavbar'
 import UserAvatar from '@/components/UserAvatar'
+
+
 
 const Rootlayout = async ({children}:{children:ReactNode}) => {
 
